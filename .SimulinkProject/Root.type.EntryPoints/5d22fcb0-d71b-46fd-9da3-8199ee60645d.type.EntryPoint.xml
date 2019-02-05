@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Info Type="StartUp" Visible="0" Icon="" File="utilities/altitudeStateTransitionFunc.m" Name="altitudeStateTransitionFunc">
+    <Extension Value="cbc86c25-2863-443f-9580-2758ae240c90" Name="StartUpPrev" />
+</Info>
