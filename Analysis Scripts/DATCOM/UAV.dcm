@@ -123,7 +123,6 @@ PART
  $OPTINS SREF=6.79, CBARR=1.15, BLREF=5.9, ROUGFC=0.40E-3$
 
 
-
 **************************************
 * Group II     Synthesis Parameters  *  pg 33
 **************************************
@@ -156,7 +155,7 @@ PART
 *           Required only for all-moveable horizontal tail trim option.
 
  $SYNTHS XCG=1.22, ZCG=0.11, 
-         XW=0.9,  ZW=0.22,  ALIW=0.0,
+         XW=0.85,  ZW=0.22,  ALIW=0.0,
          XH=3.61,  ZH=0.16,   ALIH=0.0, 
          XV=3.23,  ZV=0.16,
          SCALE=1.0, VERTUP=.TRUE.$
@@ -234,7 +233,7 @@ PART
 *           2.0 - Double delta planform (aspect ratio <= 3)
 *           3.0 - Cranked planform (aspect ratio > 3)
 
- $WGPLNF CHRDR=1.15,   CHRDTP=1.15,
+ $WGPLNF CHRDR=0.8202,   CHRDTP=0.8202,
          SSPN=2.95,  SSPNE=2.79,
          SAVSI=0.0,
          CHSTAT=0.0, TWISTA=0.0,
@@ -477,22 +476,20 @@ SAVE
 *   EFFJET  EBF Effective jet deflection angle
 *           (NDELTA values in array)
 
-* $SYMFLP FTYPE=1.0,    NDELTA=5.0,
-* DELTA(1)=0.0,5.0,10.0,15.0,20.0,
-* PHETE=0.0522, PHETEP=0.0391,
-* CHRDFI=2.0,   CHRDFO=1.6,
-* SPANFI=5.78,  SPANFO=15.3,
-* CPRMEI(1)=8.1,8.1,8.2,8.2,8.3,8.3,8.3,8.4,8.4,
-* CPRMEO(1)=3.7,3.7,3.8,3.8,3.9,3.9,3.9,4.0,4.0,
-* NTYPE=1.0$
+ $SYMFLP FTYPE=1.0,    NDELTA=5.0,
+		DELTA(1)=0.0,5.0,10.0,15.0,20.0,
+		PHETE=0.00169, PHETEP=0.00193,
+		CHRDFI=0.289,   CHRDFO=0.289,
+		SPANFI=0.19,  SPANFO=2.0,
+		NTYPE=1.0$
 
 
 * At this point, we are going to terminate the case so that we can get 
 * the flap effects. We can't save this data, as we are
 * also going to do control surfaces on the horizontal tail.
 
-* CASEID FLAPS: UAV
-* NEXT CASE
+CASEID FLAPS: UAV
+NEXT CASE
 
 
 
@@ -538,21 +535,21 @@ SAVE
 *           airfoil mean line, flap spoiler, plug spoiler and spoiler-
 *           slot-reflector, fraction of chord
 
-* $ASYFLP STYPE=4.0, NDELTA=9.0,
-* DELTAL(1)=-32.0,-20.0,-10.0,-5.0,0.0,5.0,10.0,20.0,32.0,
-* DELTAR(1)=32.0,20.0,10.0,5.0,0.0,-5.0,-10.0,-20.0,-32.0,
-* SPANFI=15.2, SPANFO=24.0,
-* PHETE=0.05228,
-* CHRDFI=1.87, CHRDFO=1.2$
+ $ASYFLP STYPE=4.0, NDELTA=9.0,
+		DELTAL(1)=-32.0,-20.0,-10.0,-5.0,0.0,5.0,10.0,20.0,32.0,
+		DELTAR(1)=32.0,20.0,10.0,5.0,0.0,-5.0,-10.0,-20.0,-32.0,
+		SPANFI=2.01, SPANFO=2.95,
+		PHETE=0.00169,
+		CHRDFI=0.289, CHRDFO=0.289$
 
 
 
 *   Terminates the reading of input cards and begins execution of
 *   the case. Case data are destroyed following execution of a case,
 *   unless the SAVE card is present.
-* CASEID AILERONS: UAV
-* SAVE
-* NEXT CASE
+CASEID AILERONS: UAV
+SAVE
+NEXT CASE
 
 
 
@@ -745,12 +742,12 @@ NACA H 4 0006
 *   EFFJET  EBF Effective jet deflection angle
 *           (NDELTA values in array)
 
-* $SYMFLP FTYPE=1.0,
-* NDELTA=9.0, DELTA(1)=-20.0,-15.0,-10.0,-5.0,0.0,5.0,10.0,13.0,16.0,
-* PHETE=0.0522, PHETEP=0.0523,
-* CHRDFI=1.94,  CHRDFO=1.03,
-* SPANFI=0.7,   SPANFO=9.21,
-* CB=0.84,      TC=0.3,         NTYPE=1.0$
+ $SYMFLP FTYPE=1.0,
+		NDELTA=8.0, DELTA(1)=-15.0,-10.0,-5.0,0.0,5.0,10.0,13.0,16.0,
+		PHETE=0.0, PHETEP=0.0,
+		CHRDFI=0.109,  CHRDFO=0.081,
+		SPANFI=0.0,   SPANFO=0.66,
+		CB=0.023,      TC=0.0197,         NTYPE=1.0$
 
 
 
