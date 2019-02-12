@@ -4,7 +4,6 @@ function xhat = headingStateTransitionFunc(V_b)
 
 %#codegen
 
-dt = 1; %1 sec time step
-xhat = x + atan2(V_b(1), V_b(2))/dt; %step with angle between X and Y velocities
+xhat = atan2(V_b(1), V_b(2)); %angle between X and Y velocities
 
 end
