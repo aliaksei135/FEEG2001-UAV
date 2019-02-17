@@ -1,0 +1,8 @@
+xflr5 v6.43
+
+Plane name :         clark y
+Polar name :        T2-VLM2
+
+   alpha      Beta       CL          CDi        CDv        CD         CY         Cl         Cm         Cn        Cni       QInf        XCP
+
+
