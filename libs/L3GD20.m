@@ -21,17 +21,17 @@ classdef L3GD20 < matlab.System & coder.ExternalDependency
         function setupImpl(obj)
             if coder.target('Rtw')
                 coder.cinclude('L3GD20Wrapper.h');
+                coder.ceval('L3GD20Init');
             end
         end
         
         function [rot] = stepImpl(obj)
+            values = single(zeros(3,1));
             if coder.target('Rtw')
-                values = single(zeros(3,1));
-                coder.cinclude('L3GD20Wrapper.h');
                 coder.ceval('L3GD20Read', coder.wref(values));
             end
             
-            rot = values(1);
+            rot = values;
             
         end
         
@@ -66,7 +66,7 @@ classdef L3GD20 < matlab.System & coder.ExternalDependency
                 buildInfo.addIncludePaths(fullfile(librarydir, 'Wire','utility'));
                 buildInfo.addIncludePaths(fullfile(current_dir,'..','nativelibs', 'include'));
                 buildInfo.addIncludePaths(fullfile(librarydir, 'Wire','src'));
-                buildInfo.addIncludePaths(fullfile(librarydir, 'Wire','src','utility'));
+                buildInfo.addIncludePaths(fullfile(hardwaredir, 'arduino', 'avr' , 'cores', 'arduino'));
                 
                 % add the source paths
                 srcPaths = {...
@@ -74,7 +74,8 @@ classdef L3GD20 < matlab.System & coder.ExternalDependency
                     fullfile(librarydir, 'Wire', 'utility'),...
                     fullfile(librarydir, 'Wire','src'),...
                     fullfile(librarydir, 'Wire','src','utility'),...
-                    fullfile(current_dir,'..','nativelibs','src')};
+                    fullfile(current_dir,'..','nativelibs','src'),...
+                    fullfile(hardwaredir, 'arduino', 'avr' , 'cores', 'arduino')};
                 buildInfo.addSourcePaths(srcPaths);
                 
                 

@@ -21,19 +21,17 @@ classdef LSM303 < matlab.System & coder.ExternalDependency
         function setupImpl(obj)
             if coder.target('Rtw')
                 coder.cinclude('LSM303Wrapper.h');
+                coder.ceval('LSM303Init');
             end
         end
         
         function [accel, mag] = stepImpl(obj)
+            values = single(zeros(6,1));
             if coder.target('Rtw')
-                values = single([zeros(3,1) zeros(3,1)]);
-                coder.cinclude('LSM303Wrapper.h');
                 coder.ceval('LSM303Read', coder.wref(values));
             end
-            
-            accel = values(1);
-            mag = values(2);
-            
+            accel = values(1:3);
+            mag = values(4:6);
         end
         
         function releaseImpl(obj)
@@ -67,7 +65,7 @@ classdef LSM303 < matlab.System & coder.ExternalDependency
                 buildInfo.addIncludePaths(fullfile(librarydir, 'Wire','utility'));
                 buildInfo.addIncludePaths(fullfile(current_dir,'..','nativelibs', 'include'));
                 buildInfo.addIncludePaths(fullfile(librarydir, 'Wire','src'));
-                buildInfo.addIncludePaths(fullfile(librarydir, 'Wire','src','utility'));
+                buildInfo.addIncludePaths(fullfile(hardwaredir, 'arduino', 'avr' , 'cores', 'arduino'));
                 
                 % add the source paths
                 srcPaths = {...
@@ -75,7 +73,8 @@ classdef LSM303 < matlab.System & coder.ExternalDependency
                     fullfile(librarydir, 'Wire', 'utility'),...
                     fullfile(librarydir, 'Wire','src'),...
                     fullfile(librarydir, 'Wire','src','utility'),...
-                    fullfile(current_dir,'..','nativelibs','src')};
+                    fullfile(current_dir,'..','nativelibs','src'),...
+                    fullfile(hardwaredir, 'arduino', 'avr' , 'cores', 'arduino')};
                 buildInfo.addSourcePaths(srcPaths);
                 
                 

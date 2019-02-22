@@ -21,14 +21,14 @@ classdef BMP085 < matlab.System & coder.ExternalDependency
         function setupImpl(obj)
             if coder.target('Rtw')
                 coder.cinclude('BMP085Wrapper.h');
+                coder.ceval('BMP085Init');
             end
         end
         
         function [press, temp, alt] = stepImpl(obj)
+            values = single(zeros(3,1));
             if coder.target('Rtw')
-                values = single(zeros(3,1));
                 values(3) = obj.Reference_Pressure;
-                coder.cinclude('BMP085Wrapper.h');
                 coder.ceval('BMP085Read', coder.wref(values));
             end
             
@@ -70,6 +70,7 @@ classdef BMP085 < matlab.System & coder.ExternalDependency
                 buildInfo.addIncludePaths(fullfile(current_dir,'..','nativelibs', 'include'));
                 buildInfo.addIncludePaths(fullfile(librarydir, 'Wire','src'));
                 buildInfo.addIncludePaths(fullfile(librarydir, 'Wire','src','utility'));
+                buildInfo.addIncludePaths(fullfile(hardwaredir, 'arduino', 'avr' , 'cores', 'arduino'));
                 
                 % add the source paths
                 srcPaths = {...
@@ -77,7 +78,8 @@ classdef BMP085 < matlab.System & coder.ExternalDependency
                     fullfile(librarydir, 'Wire', 'utility'),...
                     fullfile(librarydir, 'Wire','src'),...
                     fullfile(librarydir, 'Wire','src','utility'),...
-                    fullfile(current_dir,'..','nativelibs','src')};
+                    fullfile(current_dir,'..','nativelibs','src'),...
+                    fullfile(hardwaredir, 'arduino', 'avr' , 'cores', 'arduino')};
                 buildInfo.addSourcePaths(srcPaths);
                 
                 
