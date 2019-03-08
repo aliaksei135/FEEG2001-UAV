@@ -6,8 +6,13 @@
 Adafruit_L3GD20_Unified gyro = Adafruit_L3GD20_Unified(3333);
 
 extern "C" void L3GD20Init(){
-    gyro.begin();
-    gyro.enableAutoRange(true);
+    bool init = false;
+    do{
+        if(gyro.begin(GYRO_RANGE_2000DPS)){
+            init = true;
+        }
+    } while(!init);
+//     gyro.enableAutoRange(true);
 }
 
 extern "C" void L3GD20Read(float* values){

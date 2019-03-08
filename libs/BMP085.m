@@ -21,14 +21,13 @@ classdef BMP085 < matlab.System & coder.ExternalDependency
         function setupImpl(obj)
             if coder.target('Rtw')
                 coder.cinclude('BMP085Wrapper.h');
-                coder.ceval('BMP085Init');
+                coder.ceval('BMP085Init', obj.Reference_Pressure);
             end
         end
         
         function [press, temp, alt] = stepImpl(obj)
             values = single(zeros(3,1));
             if coder.target('Rtw')
-                values(3) = obj.Reference_Pressure;
                 coder.ceval('BMP085Read', coder.wref(values));
             end
             

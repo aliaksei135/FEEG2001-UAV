@@ -7,9 +7,20 @@ Adafruit_LSM303_Accel_Unified accel = Adafruit_LSM303_Accel_Unified(1111);
 Adafruit_LSM303_Mag_Unified mag = Adafruit_LSM303_Mag_Unified(2222);
 
 extern "C" void LSM303Init(){
-    accel.begin();
-    mag.begin();
-    mag.enableAutoRange(true);
+    bool init = false;
+    bool accelInit = false;
+    bool magInit = false;
+    do{
+        //Prevent Double init
+        if(!accelInit && accel.begin()){
+            accelInit = true;
+        }
+        if(!magInit && mag.begin()){
+            magInit = true;
+        }
+        init = accelInit && magInit;
+    }while(!init);
+//     mag.enableAutoRange(true);
 }
 
 extern "C" void LSM303Read(float* values){
