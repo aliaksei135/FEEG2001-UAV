@@ -18,6 +18,7 @@ extern "C" void GPSInit(){
     ss.begin(9600);
     ss.println(PMTK_SET_NMEA_OUTPUT_RMCGGA);
     ss.println(PMTK_SET_NMEA_UPDATE_5HZ);
+//     ss.println("$PMTK251,9600*27");
 }
 
 extern "C" void GPSRead(double* values){
@@ -31,6 +32,7 @@ extern "C" void GPSRead(double* values){
             values[4] = gps.altitude.meters();
             values[5] = gps.satellites.value();
             values[6] = gps.location.age();
+            return;
         }
     }
 }

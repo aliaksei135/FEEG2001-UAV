@@ -3,7 +3,7 @@ classdef TinyGPS < matlab.System & coder.ExternalDependency
     %#codegen
     %#ok<*EMCA>
     
-
+    
     methods(Access = protected)
         function setupImpl(~)
             if coder.target('Rtw')
@@ -12,28 +12,18 @@ classdef TinyGPS < matlab.System & coder.ExternalDependency
             end
         end
         
-        function [lat, lon, speed, course, alt, sats] = stepImpl(~)
+        function [lat, lon, speed, course, alt, sats, age] = stepImpl(~)
             values = single(zeros(7,1));
             if coder.target('Rtw')
                 coder.ceval('GPSRead', coder.wref(values));
             end
-%             if(values(7) < 2000)
-%                 valid = true;
-                lat = single(values(1));
-                lon = single(values(2));
-                speed = single(values(3));
-                course = single(values(4));
-                alt = single(values(5));
-                sats = single(values(6));
-%             else
-%                 valid = false;
-%                 lat = single(0);
-%                 lon = single(0);
-%                 speed = single(0);
-%                 course = single(0);
-%                 alt = single(0);
-%                 sats = single(0);
-%             end
+            lat = single(values(1));
+            lon = single(values(2));
+            speed = single(values(3));
+            course = single(values(4));
+            alt = single(values(5));
+            sats = single(values(6));
+            age = single(values(7));
         end
         
     end
