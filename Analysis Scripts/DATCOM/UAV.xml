@@ -20,7 +20,7 @@
 
    <fileheader>
       <author>DATCOM+</author>
-      <filecreationdate> 03/10/19  17:01 </filecreationdate>
+      <filecreationdate> 03/28/19  10:44 </filecreationdate>
       <description>DATCOM model for a unknown</description>
       <version>  </version>
       <reference refID="None" author="n/a" title="n/a" date="n/a"/>
@@ -43,11 +43,11 @@
    <metrics>
       <wingarea unit="FT2">        3.5610  </wingarea>
       <wingspan unit="FT">         5.9100  </wingspan>
-      <chord unit="FT">             .6109  </chord>
+      <chord unit="FT">             .6130  </chord>
       <htailarea unit="FT2">        .5379  </htailarea>
-      <htailarm unit="FT">         2.9195  </htailarm>
+      <htailarm unit="FT">         2.6144  </htailarm>
       <vtailarea unit="FT2">        .3821  </vtailarea>
-      <vtailarm unit="FT">         2.6666  </vtailarm>
+      <vtailarm unit="FT">         2.3645  </vtailarm>
       <location name="AERORP" unit="IN">
          <x> 43.2 </x>   FIX THIS
          <y>  0.0 </y>   FIX THIS
@@ -81,9 +81,9 @@
       <ixz unit="SLUG*FT2"> UNKNOWN </ixz>
       <emptywt unit="LBS">          .0000  </emptywt>    FIX THIS
       <location name="CG" unit="IN">
-            <x>    13.92  </x>
+            <x>    14.86  </x>
             <y>      .00  </y>
-            <z>     1.39  </z>
+            <z>     1.52  </z>
       </location>
       <pointmass name="PILOT">
          <weight unit="LBS"> 200.0 </weight>

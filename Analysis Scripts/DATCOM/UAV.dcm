@@ -51,8 +51,6 @@
 DIM FT
 DERIV DEG
 DAMP
-TRIM
-PART
 * DUMP IOM
 
 
@@ -100,8 +98,8 @@ PART
  NMACH=1.0, MACH(1)=0.05,
  NALT=1.0, ALT(1)= 100.0,
  NALPHA=20.0,
- ALSCHD(1)= -12.0, -10.0, -8.0, -6.0, -4.0, -2.0, 0.0, 2.0, 4.0, 8.0, 10.0,
- 12.0, 14.0, 16.0, 18.0, 20.0, 22.0, 24.0, 26.0,
+ ALSCHD(1)= -14.0, -12.0, -10.0, -8.0, -6.0, -5.0, -4.0, -2.0,
+ -1.0, 0.0, 1.0, 2.0, 4.0, 5.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0,
  TR=1.0$
 
 
@@ -121,7 +119,7 @@ PART
 *           0.25E-3  - Smooth matte paint, carefully applied
 *           0.40E-3  - Standard camouflage paint, average application
 
- $OPTINS SREF=3.561, CBARR=0.613, BLREF=5.91, ROUGFC=0.40E-3$
+ $OPTINS SREF=3.561, CBARR=0.613, BLREF=5.91, ROUGFC=0.50E-3$
 
 
 
@@ -156,10 +154,10 @@ PART
 *   HINAX   Longitudinal location of horizontal tail hinge axis.
 *           Required only for all-moveable horizontal tail trim option.
 
- $SYNTHS XCG=1.16, ZCG=0.116,
- XW=0.6561,  ZW=0.198,  ALIW=0.0,
+ $SYNTHS XCG=1.2381, ZCG=0.127,
+ XW=0.9612,  ZW=0.18,  ALIW=0.0,
  XH=3.61,  ZH=0.16,   ALIH=0.0,
- XV=3.23,  ZV=0.16,
+ XV=3.233,  ZV=0.155,
  SCALE=1.0, VERTUP=.TRUE.$
 
 
