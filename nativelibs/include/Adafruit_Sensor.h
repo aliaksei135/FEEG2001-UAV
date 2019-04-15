@@ -19,15 +19,9 @@
  
 #ifndef _ADAFRUIT_SENSOR_H
 #define _ADAFRUIT_SENSOR_H
-
-#ifndef ARDUINO
- #include <stdint.h>
-#elif ARDUINO >= 100
- #include "Arduino.h"
- #include "Print.h"
-#else
- #include "WProgram.h"
-#endif
+// #include <stdint.h>
+#include "Arduino.h"
+#include "Print.h"
 
 /* Intentionally modeled after sensors.h in the Android API:
  * https://github.com/android/platform_hardware_libhardware/blob/master/include/hardware/sensors.h */

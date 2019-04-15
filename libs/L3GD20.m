@@ -3,29 +3,15 @@ classdef L3GD20 < matlab.System & coder.ExternalDependency
     %#codegen
     %#ok<*EMCA>
     
-    % Public, tunable properties
-    properties
-
-    end
-    
-    properties(DiscreteState)
-        
-    end
-    
-    % Pre-computed constants
-    properties(Access = private)
-        
-    end
-    
     methods(Access = protected)
-        function setupImpl(obj)
+        function setupImpl(~)
             if coder.target('Rtw')
                 coder.cinclude('L3GD20Wrapper.h');
                 coder.ceval('L3GD20Init');
             end
         end
         
-        function [rot] = stepImpl(obj)
+        function [rot] = stepImpl(~)
             values = single(zeros(3,1));
             if coder.target('Rtw')
                 coder.ceval('L3GD20Read', coder.wref(values));
@@ -34,10 +20,7 @@ classdef L3GD20 < matlab.System & coder.ExternalDependency
             rot = values;
             
         end
-        
-        function releaseImpl(obj)
-            %
-        end
+
     end
     
     methods(Static)

@@ -11,7 +11,7 @@ classdef MadgwickAHRSFilter < matlab.System
     methods(Access = protected)
         
         function quat = stepImpl(obj, Gyroscope, Accelerometer, Magnetometer, q)
-            if (sum(isnan(Magnetometer)) ~= 0)
+            if (norm(Magnetometer) ~= 0)
                 quat = UpdateIMU(obj, Gyroscope, Accelerometer, q);
             else
                 quat = Update(obj, Gyroscope, Accelerometer, Magnetometer, q);
@@ -21,13 +21,6 @@ classdef MadgwickAHRSFilter < matlab.System
     
     methods
         function q = Update(obj, Gyroscope, Accelerometer, Magnetometer, q)
-            % Normalise accelerometer measurement
-            if(norm(Accelerometer) == 0), return; end	% handle NaN
-            Accelerometer = Accelerometer / norm(Accelerometer);	% normalise magnitude
-            
-            % Normalise magnetometer measurement
-            if(norm(Magnetometer) == 0), return; end	% handle NaN
-            Magnetometer = Magnetometer / norm(Magnetometer);	% normalise magnitude
             
             % Reference direction of Earth's magnetic feild
             h = quatmultiply(q, quatmultiply([0 Magnetometer], quatconj(q)));
@@ -57,9 +50,6 @@ classdef MadgwickAHRSFilter < matlab.System
             q = q / norm(q); % normalise quaternion
         end
         function q = UpdateIMU(obj, Gyroscope, Accelerometer, q)
-            % Normalise accelerometer measurement
-            if(norm(Accelerometer) == 0), return; end	% handle NaN
-            Accelerometer = Accelerometer / norm(Accelerometer);	% normalise magnitude
             
             % Gradient decent algorithm corrective step
             F = [2*(q(2)*q(4) - q(1)*q(3)) - Accelerometer(1)

@@ -2,30 +2,16 @@ classdef LSM303 < matlab.System & coder.ExternalDependency
     
     %#codegen
     %#ok<*EMCA>
-    
-    % Public, tunable properties
-    properties
 
-    end
-    
-    properties(DiscreteState)
-        
-    end
-    
-    % Pre-computed constants
-    properties(Access = private)
-        
-    end
-    
     methods(Access = protected)
-        function setupImpl(obj)
+        function setupImpl(~)
             if coder.target('Rtw')
                 coder.cinclude('LSM303Wrapper.h');
                 coder.ceval('LSM303Init');
             end
         end
         
-        function [accel, mag] = stepImpl(obj)
+        function [accel, mag] = stepImpl(~)
             values = single(zeros(6,1));
             if coder.target('Rtw')
                 coder.ceval('LSM303Read', coder.wref(values));
@@ -33,10 +19,7 @@ classdef LSM303 < matlab.System & coder.ExternalDependency
             accel = values(1:3);
             mag = values(4:6);
         end
-        
-        function releaseImpl(obj)
-            %
-        end
+
     end
     
     methods(Static)

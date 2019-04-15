@@ -8,15 +8,6 @@ classdef BMP085 < matlab.System & coder.ExternalDependency
         Reference_Pressure = 101325; %Reference Pressure (Pa)
     end
     
-    properties(DiscreteState)
-        
-    end
-    
-    % Pre-computed constants
-    properties(Access = private)
-        
-    end
-    
     methods(Access = protected)
         function setupImpl(obj)
             if coder.target('Rtw')
@@ -25,7 +16,7 @@ classdef BMP085 < matlab.System & coder.ExternalDependency
             end
         end
         
-        function [press, temp, alt] = stepImpl(obj)
+        function [press, temp, alt] = stepImpl(~)
             values = single(zeros(3,1));
             if coder.target('Rtw')
                 coder.ceval('BMP085Read', coder.wref(values));
@@ -35,10 +26,6 @@ classdef BMP085 < matlab.System & coder.ExternalDependency
             temp = values(2);
             alt = values(3);
             
-        end
-        
-        function releaseImpl(obj)
-            %
         end
     end
     
