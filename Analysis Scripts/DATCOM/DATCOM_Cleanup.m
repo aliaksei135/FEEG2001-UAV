@@ -4,7 +4,7 @@ for n = 1:length(datcom)
         for m = 1:datcom{n}.nmach
             for h = 1:datcom{n}.nalt
                 datcom{n}.(aerotab{k})(:,m,h) = datcom{n}.(aerotab{k})(1,m,h);
-                datcom{n}.('cnb')(:,m,h) = 3.032e-3;
+                datcom{n}.('cnb')(:,m,h) = 0;
             end
         end
     end

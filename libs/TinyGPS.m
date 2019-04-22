@@ -12,24 +12,16 @@ classdef TinyGPS < matlab.System & coder.ExternalDependency
             end
         end
         
-        function [lat, lon, speed, course, alt, sats, age] = stepImpl(~)
-            values = single(zeros(7,1));
-            valid = int8(0);
+        function [lat, lon, speed, course, alt] = stepImpl(~)
+            values = zeros(5,1, 'single');
             if coder.target('Rtw')
-                valid = coder.ceval('GPSRead', coder.wref(values));
+                coder.ceval('GPSRead', coder.wref(values));
             end
-            lat = single(values(1));
-            lon = single(values(2));
-            speed = single(values(3));
-            course = single(values(4));
-            alt = single(values(5));
-            if valid == 1
-                sats = single(values(6));
-                age = single(values(7));
-            else
-                sats = single(-1);
-                age = single(-1);
-            end
+            lat = values(1);
+            lon = values(2);
+            speed = values(3);
+            course = values(4);
+            alt = values(5);
         end
         
     end

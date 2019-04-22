@@ -17,7 +17,7 @@ classdef BMP085 < matlab.System & coder.ExternalDependency
         end
         
         function [press, temp, alt] = stepImpl(~)
-            values = single(zeros(3,1));
+            values = zeros(3,1, 'single');
             if coder.target('Rtw')
                 coder.ceval('BMP085Read', coder.wref(values));
             end

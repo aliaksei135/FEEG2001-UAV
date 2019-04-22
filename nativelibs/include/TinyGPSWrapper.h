@@ -2,7 +2,7 @@
 extern "C" {
 #endif
     void GPSInit();
-    int GPSRead(float* values);
+    void GPSRead(float* values);
 #ifdef __cplusplus
 }
 #endif

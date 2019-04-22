@@ -21,7 +21,7 @@ extern "C" void GPSInit(){
     ss.println("$PMTK386,0.4*39"); //Set 0.4m/s nav ignore threshold
 }
 
-extern "C" int GPSRead(float* values){
+extern "C" void GPSRead(float* values){
     do{
         if(gps.encode(ss.read())){
             //Valid NMEA sentence found
@@ -30,9 +30,7 @@ extern "C" int GPSRead(float* values){
             values[2] = (float) gps.speed.mps();
             values[3] = (float) gps.course.deg();
             values[4] = (float) gps.altitude.meters();
-            values[5] = (float) gps.satellites.value();
-            values[6] = (float) gps.location.age();
-            return gps.location.isValid() ? 1 : 0;
+            return;
         }
     } while(ss.available());
     return 0;

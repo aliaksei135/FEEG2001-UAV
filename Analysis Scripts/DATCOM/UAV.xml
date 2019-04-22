@@ -20,7 +20,7 @@
 
    <fileheader>
       <author>DATCOM+</author>
-      <filecreationdate> 03/28/19  10:44 </filecreationdate>
+      <filecreationdate> 04/21/19  18:39 </filecreationdate>
       <description>DATCOM model for a unknown</description>
       <version>  </version>
       <reference refID="None" author="n/a" title="n/a" date="n/a"/>
@@ -45,9 +45,9 @@
       <wingspan unit="FT">         5.9100  </wingspan>
       <chord unit="FT">             .6130  </chord>
       <htailarea unit="FT2">        .5379  </htailarea>
-      <htailarm unit="FT">         2.6144  </htailarm>
+      <htailarm unit="FT">         2.5907  </htailarm>
       <vtailarea unit="FT2">        .3821  </vtailarea>
-      <vtailarm unit="FT">         2.3645  </vtailarm>
+      <vtailarm unit="FT">         2.3408  </vtailarm>
       <location name="AERORP" unit="IN">
          <x> 43.2 </x>   FIX THIS
          <y>  0.0 </y>   FIX THIS
@@ -81,7 +81,7 @@
       <ixz unit="SLUG*FT2"> UNKNOWN </ixz>
       <emptywt unit="LBS">          .0000  </emptywt>    FIX THIS
       <location name="CG" unit="IN">
-            <x>    14.86  </x>
+            <x>    14.93  </x>
             <y>      .00  </y>
             <z>     1.52  </z>
       </location>

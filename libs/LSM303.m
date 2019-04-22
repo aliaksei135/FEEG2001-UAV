@@ -12,7 +12,7 @@ classdef LSM303 < matlab.System & coder.ExternalDependency
         end
         
         function [accel, mag] = stepImpl(~)
-            values = single(zeros(6,1));
+            values = zeros(6,1, 'single');
             if coder.target('Rtw')
                 coder.ceval('LSM303Read', coder.wref(values));
             end
