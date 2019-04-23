@@ -24,9 +24,9 @@
 #ifndef SOFTWARE_SPI
 #ifdef USE_SPI_LIB
 
-#ifndef SDCARD_SPI
+// #ifndef SDCARD_SPI
 #define SDCARD_SPI SPI
-#endif
+// #endif
 
 #include <SPI.h>
 static SPISettings settings;

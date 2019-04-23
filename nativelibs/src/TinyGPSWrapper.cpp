@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <SoftwareSerial.h>
 #include "TinyGPS++.h"
 #include "TinyGPSWrapper.h"
 
@@ -9,29 +8,28 @@
 // #define PMTK_SET_NMEA_OUTPUT_OFF "$PMTK314,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0*28"
 
 #define PMTK_SET_NMEA_UPDATE_1HZ  "$PMTK220,1000*1F"
-// #define PMTK_SET_NMEA_UPDATE_5HZ  "$PMTK220,200*2C"
+#define PMTK_SET_NMEA_UPDATE_5HZ  "$PMTK220,200*2C"
 
 TinyGPSPlus gps;
-SoftwareSerial ss(8, 7); //Hardcode RX TX pins
 
 extern "C" void GPSInit(){
-    ss.begin(9600);
-    ss.println(PMTK_SET_NMEA_OUTPUT_RMCGGA);
-    ss.println(PMTK_SET_NMEA_UPDATE_1HZ);
-    ss.println("$PMTK386,0.4*39"); //Set 0.4m/s nav ignore threshold
+    Serial1.begin(9600);
+    Serial1.println(PMTK_SET_NMEA_OUTPUT_RMCGGA);
+    Serial1.println(PMTK_SET_NMEA_UPDATE_1HZ);
+    Serial1.println("$PMTK386,0.4*39"); //Set 0.4m/s nav ignore threshold
 }
 
 extern "C" void GPSRead(float* values){
-    do{
-        if(gps.encode(ss.read())){
+    while(Serial1.available()){
+        if(gps.encode(Serial1.read())){
             //Valid NMEA sentence found
-            values[0] = (float) gps.location.lat();
-            values[1] = (float) gps.location.lng();
-            values[2] = (float) gps.speed.mps();
-            values[3] = (float) gps.course.deg();
-            values[4] = (float) gps.altitude.meters();
+            values[0] = gps.location.lat();
+            values[1] = gps.location.lng();
+            values[2] = gps.speed.mps();
+            values[3] = gps.course.deg();
+            values[4] = gps.altitude.meters();
             return;
         }
-    } while(ss.available());
-    return 0;
+        delay(1);
+    }
 }

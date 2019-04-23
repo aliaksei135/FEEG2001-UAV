@@ -7,15 +7,13 @@ File dataFile;
 const char TERM_BYTES[] = {0x00, 0x00, 0x00, 0x00};
 
 extern "C" void SDLoggerInit(){
-    SD.begin(10); //Hardcode CS, as is 'standard' pin
+    SD.begin(53); //Hardcode CS, as is 'standard' pin
     dataFile = SD.open("log", O_CREAT|O_WRITE);
     delay(100);
 }
 
 extern "C" void SDLoggerLog(float data[], int size){
-    Serial.println("Logging");
     if(dataFile){
-        Serial.println("Writing");
         char bytes[size * 4]; //Alloc for 4 byte floats
         for(int i=0; i<size;i++){
             unsigned char const * p = reinterpret_cast<unsigned char const *>(&data[i]);

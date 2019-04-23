@@ -55,7 +55,7 @@ classdef TinyGPS < matlab.System & coder.ExternalDependency
                 
                 % add the source paths
                 srcPaths = {...
-                    fullfile(librarydir, 'SoftwareSerial'), ...
+                    fullfile(librarydir, 'SoftwareSerial'), ...s
                     fullfile(librarydir, 'SoftwareSerial','src'),...
                     fullfile(current_dir,'..','nativelibs','src'),...
                     fullfile(hardwaredir, 'arduino', 'avr' , 'cores', 'arduino')};
@@ -63,7 +63,7 @@ classdef TinyGPS < matlab.System & coder.ExternalDependency
                 
                 
                 % add the source files
-                srcFiles = {'SoftwareSerial.cpp', 'TinyGPS++.cpp', 'TinyGPSWrapper.cpp'};
+                srcFiles = { 'TinyGPS++.cpp', 'TinyGPSWrapper.cpp'};
                 buildInfo.addSourceFiles(srcFiles);
                 
             end
