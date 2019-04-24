@@ -22,9 +22,10 @@ extern "C" void SDLoggerLog(float data[], int size){
             bytes[i * 4 + 2] = p[2];
             bytes[i * 4 + 3] = p[3];
         }
-        Serial.println(bytes);
+//         Serial.println(bytes);
         dataFile.write(bytes, size*4);
         dataFile.write((const char *)TERM_BYTES, 4);
+        dataFile.flush();
     }
 }
 
