@@ -4,7 +4,7 @@
 #include "SDLogger.h"
 
 File dataFile;
-const char TERM_BYTES[] = {0x00, 0x00, 0x00, 0x00};
+const char TERM_BYTES[] = {0x04, 0x04, 0x04, 0x04};
 
 extern "C" void SDLoggerInit(){
     SD.begin(53); //Hardcode CS, as is 'standard' pin

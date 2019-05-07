@@ -154,8 +154,8 @@ DAMP
 *   HINAX   Longitudinal location of horizontal tail hinge axis.
 *           Required only for all-moveable horizontal tail trim option.
 
- $SYNTHS XCG=1.2438, ZCG=0.127,
- XW=0.9849,  ZW=0.18,  ALIW=0.0,
+ $SYNTHS XCG=1.2602, ZCG=0.127,
+ XW=1.0564,  ZW=0.18,  ALIW=0.0,
  XH=3.61,  ZH=0.16,   ALIH=0.0,
  XV=3.233,  ZV=0.155,
  SCALE=1.0, VERTUP=.TRUE.$
